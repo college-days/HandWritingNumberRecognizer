@@ -285,7 +285,7 @@ def load_models():
 
 if __name__ == "__main__":
     training = True
-    iscached = False
+    iscached = True
     loaddata("../pretreat_statistic/semeionsamples/", gv.samples)
     loaddata("../pretreat_statistic/semeionsamples/", gv.tests)    
     print len(gv.samples)

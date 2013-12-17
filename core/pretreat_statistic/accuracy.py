@@ -62,3 +62,4 @@ if __name__ == '__main__':
     calcAccuracy("../svm/semeionsvmresult.txt", "./accuracyresult/svm.txt")
     calcAccuracy("../ann/semeionannresult.txt", "./accuracyresult/ann.txt")
     calcAccuracy("../svm/semeionsvmresultnew.txt", "./accuracyresult/svmnew.txt")
+    calcAccuracy("../svm/semeionsvmresultnewnew.txt", "./accuracyresult/svmnewnew.txt")

@@ -92,7 +92,7 @@ if __name__ == '__main__':
         verify = Verify1(i, copy.deepcopy(sampleList))
         verifyList.append(verify)
     
-    resultFile = open("./semeionsvmresultnew.txt", "w")
+    resultFile = open("./semeionsvmresultnewnew.txt", "w")
     dirs = os.listdir(source)
     for dir in dirs:
         files = os.listdir(source + dir)
