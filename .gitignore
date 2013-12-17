@@ -1,0 +1,9 @@
+*.py[cod]
+*.pyc
+*.swp
+*.idea
+*.sql
+MANIFEST
+.DS_Store
+dist
+/app/testsamples/
