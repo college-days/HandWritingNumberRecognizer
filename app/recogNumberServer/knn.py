@@ -20,14 +20,19 @@ class Knn:
         closestPoints = heapq.nsmallest(self.k, self.samples, key=lambda sample: self.calcDistance(self.test, sample.data))
         closestLabels = [point.num for point in closestPoints]
         print closestLabels
+        if len(set(closestLabels)) == 1:
+            flag = True
+        else:
+            flag = False
+
         #return max(set(closestLabels), key=closestLabels.count)
         if len(list(set(closestLabels))) == len(closestLabels):
             print closestLabels[0]
-            return closestLabels[0]
+            return closestLabels[0], flag
         elif closestLabels[0] != closestLabels[1] and closestLabels[1] == closestLabels[2]:
-            return closestLabels[0]
+            return closestLabels[0], flag
         else:
-            return max(set(closestLabels), key=closestLabels.count)
+            return max(set(closestLabels), key=closestLabels.count), flag
 
     def parse_image(self, path):
         sampleList = []

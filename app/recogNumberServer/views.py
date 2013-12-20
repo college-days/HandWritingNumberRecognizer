@@ -8,6 +8,8 @@ from filterImage import ImageFilter
 from knn import Knn
 from svm import svmdecision
 from ann import anndecision
+#from pca import pcadecision
+#from lda import ldadecision
 
 def root(request):
     return HttpResponseRedirect("/index/")
@@ -41,29 +43,43 @@ def getImage(request):
 def processImage(request):
     source = str(os.path.join(os.path.dirname(__file__), '../testsamples/cleantha.png').replace('\\', '/'))
     imagefilter = ImageFilter(source)
+    #没有经过轮廓提取的
     vectorTarget = imagefilter.getVectorNormal()
     arrayTarget = imagefilter.getArrayNormal()
+    #经过轮廓提取的
     #vectorTarget = imagefilter.getVectorNew()
     #arrayTarget = imagefilter.getArrayNew()
 
     knnmachine = Knn(3)
     knnmachine.test = vectorTarget
-    knnresult = knnmachine.getNumber()
+    knnresult, flag = knnmachine.getNumber()
 
     svmresult = svmdecision(arrayTarget)
     annresult = anndecision(vectorTarget)
+    #pcaresult = pcadecision(vectorTarget)
+    #ldaresult = ldadecision(vectorTarget)
     
     #感觉靠谱程度是svm > knn > ann
 
+    #resultList = [knnresult, svmresult, annresult, pcaresult, ldaresult]
     resultList = [knnresult, svmresult, annresult]
     print resultList
+    print flag
     result = -1
     if len(list(set(resultList))) == len(resultList):
-        result = resultList[0]
-    elif resultList[0] != resultList[1] and resultList[1] == resultList[2]:
+        #result = resultList[0]
         result = int(sum(resultList)/len(resultList))
+    elif resultList[0] != resultList[1] and resultList[1] == resultList[2]:
+        if flag:
+            result = resultList[0]
+        else:
+            result = max(set(resultList), key=resultList.count)
+    elif resultList[0] == resultList[2] and resultList[0] != resultList[1]:
+        if flag:
+            result = resultList[0]
+        else:
+            result = resultList[1]
     else:
         result = max(set(resultList), key=resultList.count)
-
     return render_to_response("uploadnew.html", {'result': '%d' % int(result)})
 

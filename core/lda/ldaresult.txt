@@ -1,0 +1,10 @@
+lda 0 accuracy ---> 0.937888
+lda 1 accuracy ---> 0.851852
+lda 2 accuracy ---> 0.918239
+lda 3 accuracy ---> 0.924528
+lda 4 accuracy ---> 0.850932
+lda 5 accuracy ---> 0.937107
+lda 6 accuracy ---> 0.950311
+lda 7 accuracy ---> 0.860759
+lda 8 accuracy ---> 0.864516
+lda 9 accuracy ---> 0.905063
